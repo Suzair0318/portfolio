@@ -100,7 +100,7 @@ export default function Hero() {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-orbitron font-bold text-gradient mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold text-gradient mb-6"
           >
             SUZAIR KHAN
           </motion.h1>
@@ -112,7 +112,7 @@ export default function Hero() {
             transition={{ delay: 0.5 }}
             className="h-16 flex items-center justify-center"
           >
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-inter text-gray-300 font-medium">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-inter text-gray-300 font-medium">
               {text}
               <span className="animate-pulse text-cyan-400">|</span>
             </h2>
@@ -123,7 +123,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
             Experienced in designing and deploying scalable cloud-based IoT solutions, 
             MERN stack development, and leading cross-functional teams to deliver 
@@ -166,7 +166,7 @@ export default function Hero() {
               href="#contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block glass px-8 py-4 rounded-full text-lg font-medium text-white hover:cyber-glow transition-all duration-300 border border-cyan-400/30 hover:border-cyan-400/60"
+              className="inline-block glass px-10 py-5 rounded-full text-xl font-medium text-white hover:cyber-glow transition-all duration-300 border border-cyan-400/30 hover:border-cyan-400/60"
             >
               <span className="text-gradient font-semibold">Let&apos;s Work Together</span>
             </motion.a>
