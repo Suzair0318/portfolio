@@ -95,7 +95,7 @@ export default function Contact() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
             <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-              Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
+              Ready to bring your ideas to life? Let&apos;s discuss your next project and create something amazing together.
             </p>
           </motion.div>
 
@@ -109,10 +109,10 @@ export default function Contact() {
             >
               <div className="glass p-8 rounded-2xl">
                 <h3 className="text-2xl font-orbitron font-semibold text-gradient mb-6">
-                  Let's Connect
+                  Let&apos;s Connect
                 </h3>
                 <p className="text-gray-300 leading-relaxed mb-8">
-                  I'm always excited to work on innovative projects and collaborate with talented teams. 
+                  I&apos;m always excited to work on innovative projects and collaborate with talented teams. 
                   Whether you have a project in mind or just want to say hello, feel free to reach out!
                 </p>
 
@@ -299,7 +299,7 @@ export default function Contact() {
                 Ready to Start Your Project?
               </h3>
               <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-                I'm available for freelance work and full-time opportunities. Let's discuss how we can 
+                I&apos;m available for freelance work and full-time opportunities. Let&apos;s discuss how we can 
                 bring your vision to life with cutting-edge technology and innovative solutions.
               </p>
               <div className="flex flex-wrap justify-center gap-4">

@@ -191,7 +191,7 @@ export default function Experience() {
               </h3>
               <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
                 Looking to contribute to innovative projects that push the boundaries of technology. 
-                Let's build something amazing together.
+                Let&apos;s build something amazing together.
               </p>
               <motion.a
                 href="#contact"
@@ -199,7 +199,7 @@ export default function Experience() {
                 whileTap={{ scale: 0.95 }}
                 className="inline-block glass px-8 py-3 rounded-full text-cyan-400 font-semibold border border-cyan-400/30 hover:border-cyan-400/60 hover:cyber-glow transition-all duration-300"
               >
-                Let's Connect
+                Let&apos;s Connect
               </motion.a>
             </div>
           </motion.div>

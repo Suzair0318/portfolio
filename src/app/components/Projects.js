@@ -228,7 +228,7 @@ export default function Projects() {
                 More Projects Coming Soon
               </h3>
               <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-                I'm constantly working on new and exciting projects. Check out my GitHub for the latest updates 
+                I&apos;m constantly working on new and exciting projects. Check out my GitHub for the latest updates 
                 and contributions to open-source projects.
               </p>
               <motion.a

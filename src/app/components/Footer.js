@@ -163,7 +163,7 @@ export default function Footer() {
                 </div>
                 <div className="glass p-4 rounded-xl mt-6">
                   <p className="text-sm text-gray-400 leading-relaxed">
-                    "Building the future, one line of code at a time. Let's create something extraordinary together."
+                    &quot;Building the future, one line of code at a time. Let&apos;s create something extraordinary together.&quot;
                   </p>
                 </div>
               </div>

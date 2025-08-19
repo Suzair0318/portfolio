@@ -141,7 +141,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="inline-block glass px-8 py-4 rounded-full text-lg font-medium text-white hover:cyber-glow transition-all duration-300 border border-cyan-400/30 hover:border-cyan-400/60"
             >
-              <span className="text-gradient font-semibold">Let's Work Together</span>
+              <span className="text-gradient font-semibold">Let&apos;s Work Together</span>
             </motion.a>
           </motion.div>
         </motion.div>
