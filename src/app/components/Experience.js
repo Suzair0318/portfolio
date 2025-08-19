@@ -81,7 +81,6 @@ export default function Experience() {
             <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-4">
               Experience
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
             <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
               Professional journey in backend development, full-stack solutions, and IoT systems
             </p>
@@ -90,7 +89,7 @@ export default function Experience() {
           {/* Timeline */}
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500"></div>
+            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-600"></div>
 
             {/* Experience Items */}
             <div className="space-y-12">
@@ -206,12 +205,6 @@ export default function Experience() {
         </motion.div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-40 h-40 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-60 h-60 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-3/4 left-1/3 w-32 h-32 bg-pink-500/5 rounded-full blur-3xl"></div>
-      </div>
     </section>
   )
 }

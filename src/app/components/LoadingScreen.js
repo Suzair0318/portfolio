@@ -25,7 +25,6 @@ export default function LoadingScreen() {
       {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 animate-gradient-xy"></div>
-        <div className="absolute inset-0 bg-cyber-grid bg-grid opacity-20"></div>
       </div>
 
       {/* Floating Particles */}

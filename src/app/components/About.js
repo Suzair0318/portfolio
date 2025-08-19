@@ -35,7 +35,6 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-4">
               About Me
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -147,11 +146,6 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-40 h-40 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-20 w-60 h-60 bg-purple-500/5 rounded-full blur-3xl"></div>
-      </div>
     </section>
   )
 }

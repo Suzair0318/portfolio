@@ -103,7 +103,6 @@ export default function Skills() {
             <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-4">
               Technical Skills
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
             <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
               Comprehensive expertise across modern web technologies, cloud platforms, and IoT systems
             </p>
@@ -196,12 +195,6 @@ export default function Skills() {
         </motion.div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 -left-32 w-64 h-64 bg-cyan-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 -right-32 w-80 h-80 bg-purple-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute top-2/3 left-1/2 w-48 h-48 bg-pink-500/3 rounded-full blur-3xl"></div>
-      </div>
     </section>
   )
 }

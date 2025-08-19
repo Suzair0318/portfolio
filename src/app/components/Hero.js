@@ -1,8 +1,54 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, memo } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa'
+import dynamic from 'next/dynamic'
+
+// Dynamically import 3D scene to avoid SSR issues
+const Scene3D = dynamic(() => import('./Scene3D'), { 
+  ssr: false,
+  loading: () => null
+})
+
+// Memoized particle component to prevent re-renders
+const FloatingParticles = memo(() => {
+  return (
+    <>
+      {[...Array(30)].map((_, i) => {
+        const initialLeft = Math.random() * 100;
+        const initialTop = Math.random() * 100;
+        const animationDuration = 8 + (i % 4);
+        const animationDelay = (i * 0.3) % 6;
+        
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-50"
+            style={{
+              left: `${initialLeft}%`,
+              top: `${initialTop}%`,
+            }}
+            animate={{
+              y: [-12, 12, -12],
+              x: [-6, 6, -6],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: animationDuration,
+              repeat: Infinity,
+              delay: animationDelay,
+              ease: "easeInOut",
+              repeatType: "loop",
+            }}
+          />
+        );
+      })}
+    </>
+  );
+});
+
+FloatingParticles.displayName = 'FloatingParticles';
 
 export default function Hero() {
   const [text, setText] = useState('')
@@ -32,32 +78,13 @@ export default function Hero() {
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-pink-500/5 animate-gradient-xy"></div>
+        
+        {/* 3D Scene */}
+        <Scene3D />
         
         {/* Floating Particles */}
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-60"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-              opacity: [0.3, 1, 0.3],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+        <FloatingParticles />
 
-        {/* Cyber Grid Lines */}
-        <div className="absolute inset-0 bg-cyber-grid bg-grid opacity-10"></div>
       </div>
 
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4">

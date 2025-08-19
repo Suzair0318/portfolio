@@ -98,7 +98,6 @@ export default function Projects() {
             <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-4">
               Featured Projects
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
             <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
               Showcasing innovative solutions across IoT, full-stack development, and modern web applications
             </p>
@@ -148,8 +147,7 @@ export default function Projects() {
                 className="glass rounded-2xl overflow-hidden hover:cyber-glow transition-all duration-300 group"
               >
                 {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br from-${project.color}-500/20 to-${project.color}-700/20`}></div>
+                <div className="relative h-48 bg-gray-800 overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className={`w-16 h-16 rounded-full bg-${project.color}-400/20 flex items-center justify-center`}>
                       {project.category === 'IoT' && <FaServer className={`w-8 h-8 text-${project.color}-400`} />}
@@ -247,12 +245,6 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-cyan-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-purple-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute top-2/3 left-1/2 w-48 h-48 bg-pink-500/3 rounded-full blur-3xl"></div>
-      </div>
     </section>
   )
 }

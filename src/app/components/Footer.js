@@ -193,14 +193,7 @@ export default function Footer() {
         </motion.div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute bottom-0 left-1/4 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl"></div>
-      </div>
 
-      {/* Cyber Grid Pattern */}
-      <div className="absolute inset-0 bg-cyber-grid bg-grid opacity-5 pointer-events-none"></div>
     </footer>
   )
 }

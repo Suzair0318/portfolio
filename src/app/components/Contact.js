@@ -93,7 +93,6 @@ export default function Contact() {
             <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-gradient mb-4">
               Get In Touch
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full"></div>
             <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
               Ready to bring your ideas to life? Let&apos;s discuss your next project and create something amazing together.
             </p>
@@ -327,12 +326,6 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-64 h-64 bg-cyan-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-purple-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute top-2/3 left-1/2 w-48 h-48 bg-pink-500/3 rounded-full blur-3xl"></div>
-      </div>
     </section>
   )
 }
