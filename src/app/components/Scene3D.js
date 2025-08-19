@@ -5,78 +5,201 @@ import { useRef, useMemo, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import * as THREE from 'three'
 
-// Animated 3D Torus
-function AnimatedTorus({ position, color, speed = 1 }) {
+// Developer Monitor Setup
+function DeveloperMonitor({ position, color, speed = 1 }) {
   const meshRef = useRef()
+  const screenRef = useRef()
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += 0.01 * speed
-      meshRef.current.rotation.y += 0.01 * speed
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed) * 0.5
+      meshRef.current.rotation.y += 0.002 * speed
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.6) * 0.15
+    }
+    if (screenRef.current) {
+      // Subtle screen glow animation
+      screenRef.current.material.emissiveIntensity = 0.1 + Math.sin(state.clock.elapsedTime * 2) * 0.05
     }
   })
 
   return (
-    <mesh ref={meshRef} position={position}>
-      <torusGeometry args={[1, 0.3, 16, 100]} />
-      <meshStandardMaterial 
-        color={color} 
-        transparent 
-        opacity={0.6}
-        wireframe={true}
-      />
-    </mesh>
+    <group ref={meshRef} position={position}>
+      {/* Monitor Stand */}
+      <mesh position={[0, -1, 0]}>
+        <cylinderGeometry args={[0.3, 0.4, 0.2, 8]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.8}
+          roughness={0.2}
+        />
+      </mesh>
+      
+      {/* Monitor Arm */}
+      <mesh position={[0, -0.3, 0]}>
+        <cylinderGeometry args={[0.05, 0.05, 1.4, 8]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.8}
+          roughness={0.2}
+        />
+      </mesh>
+      
+      {/* Monitor Frame */}
+      <mesh position={[0, 0.5, 0]}>
+        <boxGeometry args={[3.5, 2, 0.2]} />
+        <meshStandardMaterial 
+          color="#1a1a1a" 
+          metalness={0.9}
+          roughness={0.1}
+        />
+      </mesh>
+      
+      {/* Monitor Screen */}
+      <mesh ref={screenRef} position={[0, 0.5, 0.11]}>
+        <planeGeometry args={[3.2, 1.8]} />
+        <meshStandardMaterial 
+          color={color} 
+          transparent 
+          opacity={0.4}
+          emissive={color}
+          emissiveIntensity={0.15}
+        />
+      </mesh>
+      
+      {/* IDE Interface Elements */}
+      {/* File Explorer */}
+      <mesh position={[-1.3, 0.8, 0.12]}>
+        <planeGeometry args={[0.6, 1.4]} />
+        <meshStandardMaterial 
+          color="#1e1e1e" 
+          transparent 
+          opacity={0.8}
+        />
+      </mesh>
+      
+      {/* Code Editor */}
+      <mesh position={[0.3, 0.5, 0.12]}>
+        <planeGeometry args={[2.2, 1.6]} />
+        <meshStandardMaterial 
+          color="#0d1117" 
+          transparent 
+          opacity={0.9}
+        />
+      </mesh>
+      
+      {/* Code Lines */}
+      {Array.from({ length: 12 }, (_, i) => (
+        <mesh 
+          key={i}
+          position={[-0.5 + (i % 3) * 0.1, 1.1 - i * 0.12, 0.13]}
+        >
+          <boxGeometry args={[1.8 - (i % 4) * 0.2, 0.02, 0.01]} />
+          <meshStandardMaterial 
+            color={i % 3 === 0 ? '#ff6b6b' : i % 3 === 1 ? '#4ecdc4' : '#45b7d1'} 
+            transparent 
+            opacity={0.9}
+            emissive={i % 3 === 0 ? '#ff6b6b' : i % 3 === 1 ? '#4ecdc4' : '#45b7d1'}
+            emissiveIntensity={0.2}
+          />
+        </mesh>
+      ))}
+    </group>
   )
 }
 
-// Animated 3D Sphere
-function AnimatedSphere({ position, color, speed = 1 }) {
+// Realistic Developer Laptop
+function RealisticLaptop({ position, color, speed = 1 }) {
   const meshRef = useRef()
+  const screenRef = useRef()
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x += 0.005 * speed
-      meshRef.current.rotation.z += 0.005 * speed
-      meshRef.current.position.x = position[0] + Math.cos(state.clock.elapsedTime * speed * 0.5) * 0.3
+      meshRef.current.rotation.y += 0.003 * speed
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.8) * 0.2
+    }
+    if (screenRef.current) {
+      // Subtle screen animation
+      screenRef.current.rotation.x = -0.3 + Math.sin(state.clock.elapsedTime * 0.5) * 0.05
     }
   })
 
   return (
-    <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.8, 32, 32]} />
-      <meshStandardMaterial 
-        color={color} 
-        transparent 
-        opacity={0.4}
-        wireframe={true}
-      />
-    </mesh>
-  )
-}
-
-// Animated 3D Box
-function AnimatedBox({ position, color, speed = 1 }) {
-  const meshRef = useRef()
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += 0.008 * speed
-      meshRef.current.rotation.y += 0.008 * speed
-      meshRef.current.position.z = position[2] + Math.sin(state.clock.elapsedTime * speed * 0.8) * 0.4
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} position={position}>
-      <boxGeometry args={[1.2, 1.2, 1.2]} />
-      <meshStandardMaterial 
-        color={color} 
-        transparent 
-        opacity={0.5}
-        wireframe={true}
-      />
-    </mesh>
+    <group ref={meshRef} position={position}>
+      {/* Laptop Base/Keyboard */}
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[3, 0.15, 2]} />
+        <meshStandardMaterial 
+          color="#1a1a1a" 
+          transparent 
+          opacity={0.9}
+          metalness={0.8}
+          roughness={0.2}
+        />
+      </mesh>
+      
+      {/* Keyboard Keys */}
+      {Array.from({ length: 48 }, (_, i) => {
+        const row = Math.floor(i / 12)
+        const col = i % 12
+        return (
+          <mesh 
+            key={i}
+            position={[-1.3 + col * 0.22, 0.08, -0.6 + row * 0.3]}
+          >
+            <boxGeometry args={[0.18, 0.05, 0.18]} />
+            <meshStandardMaterial 
+              color={color} 
+              transparent 
+              opacity={0.7}
+              emissive={color}
+              emissiveIntensity={0.1}
+            />
+          </mesh>
+        )
+      })}
+      
+      {/* Laptop Screen */}
+      <group ref={screenRef} position={[0, 0.8, -0.9]}>
+        <mesh>
+          <boxGeometry args={[2.8, 1.8, 0.1]} />
+          <meshStandardMaterial 
+            color="#0a0a0a" 
+            transparent 
+            opacity={0.95}
+            metalness={0.9}
+            roughness={0.1}
+          />
+        </mesh>
+        
+        {/* Screen Display */}
+        <mesh position={[0, 0, 0.06]}>
+          <planeGeometry args={[2.6, 1.6]} />
+          <meshStandardMaterial 
+            color={color} 
+            transparent 
+            opacity={0.3}
+            emissive={color}
+            emissiveIntensity={0.2}
+          />
+        </mesh>
+        
+        {/* Code Lines on Screen */}
+        {Array.from({ length: 8 }, (_, i) => (
+          <mesh 
+            key={i}
+            position={[-0.8 + (i % 2) * 0.4, 0.5 - i * 0.12, 0.07]}
+          >
+            <boxGeometry args={[1.0 - (i % 3) * 0.2, 0.02, 0.01]} />
+            <meshStandardMaterial 
+              color={color} 
+              transparent 
+              opacity={0.8}
+              emissive={color}
+              emissiveIntensity={0.3}
+            />
+          </mesh>
+        ))}
+      </group>
+    </group>
   )
 }
 
@@ -134,19 +257,19 @@ function Scene({ scrollOffset = 0 }) {
 
   return (
     <group ref={groupRef}>
-      {/* Lighting */}
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={0.5} color="#00ffff" />
-      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#ff00ff" />
+      {/* Enhanced Lighting for Better Visibility */}
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} color="#00ffff" />
+      <pointLight position={[-10, -10, -10]} intensity={0.6} color="#ff00ff" />
+      <pointLight position={[0, 5, 5]} intensity={0.4} color="#8b5cf6" />
       
-      {/* 3D Objects */}
-      <AnimatedTorus position={[-3, 0, -2]} color="#00ffff" speed={0.8} />
-      <AnimatedSphere position={[3, -1, -3]} color="#ff00ff" speed={1.2} />
-      <AnimatedBox position={[0, 2, -4]} color="#8b5cf6" speed={1} />
+      {/* Realistic Developer 3D Objects - Closer and More Visible */}
+      <DeveloperMonitor position={[-4, 1, 1]} color="#00ffff" speed={0.8} />
+   
+      <RealisticLaptop position={[-1.5, -2, 2]} color="#4ecdc4" speed={0.9} />
       
-      {/* Additional smaller objects */}
-      <AnimatedTorus position={[4, 3, -5]} color="#00ffff" speed={1.5} />
-      <AnimatedSphere position={[-4, -2, -6]} color="#8b5cf6" speed={0.7} />
+      {/* Additional developer objects - More spread out */}
+      <DeveloperMonitor position={[6, 2, -2]} color="#45b7d1" speed={1.5} />
       
       {/* Particle System */}
       <ParticleSystem />
@@ -171,8 +294,8 @@ export default function Scene3D() {
     <div className="absolute inset-0 pointer-events-none">
       <Canvas
         camera={{ 
-          position: [0, 0, 5], 
-          fov: 75,
+          position: [0, 0, 8], 
+          fov: 60,
           near: 0.1,
           far: 1000
         }}
