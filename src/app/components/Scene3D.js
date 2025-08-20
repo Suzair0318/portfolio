@@ -12,7 +12,7 @@ function DeveloperMonitor({ position, color, speed = 1 }) {
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.002 * speed
+      meshRef.current.rotation.y += 0.007 * speed
       meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.6) * 0.15
     }
     if (screenRef.current) {
@@ -112,7 +112,7 @@ function CoffeeMug({ position, color, speed = 1 }) {
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.001 * speed
+      meshRef.current.rotation.y += 0.007 * speed
       meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.4) * 0.1
     }
   })
@@ -171,7 +171,7 @@ function Smartphone({ position, color, speed = 1 }) {
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.002 * speed
+      meshRef.current.rotation.y += 0.007 * speed
       meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.5) * 0.08
     }
     if (screenRef.current) {
@@ -234,7 +234,7 @@ function RealisticLaptop({ position, color, speed = 1 }) {
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.003 * speed
+      meshRef.current.rotation.y += 0.007 * speed
       meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.8) * 0.2
     }
     if (screenRef.current) {
@@ -340,8 +340,8 @@ function ParticleSystem() {
 
   useFrame((state) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += 0.001
-      pointsRef.current.rotation.x += 0.0005
+      pointsRef.current.rotation.y += 0.002
+      pointsRef.current.rotation.x += 0.001
     }
   })
 
@@ -371,8 +371,8 @@ function Scene({ scrollOffset = 0 }) {
   
   useFrame(() => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = scrollOffset * 0.001
-      groupRef.current.position.y = Math.sin(scrollOffset * 0.002) * 0.5
+      // Only move in Y-axis with scroll, no rotation - much slower movement
+      groupRef.current.position.y = -0.5 + Math.sin(scrollOffset * 0.0001) * 0.1
     }
   })
 
@@ -430,7 +430,7 @@ export default function Scene3D() {
         style={{ 
           background: 'transparent',
           zIndex: 1,
-          transform: `translateY(${scrollY * 0.3}px) rotateX(${scrollY * 0.01}deg)`
+          transform: `translateY(${scrollY * 0.1}px)`
         }}
       >
         <Scene scrollOffset={scrollY} />

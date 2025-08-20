@@ -1,54 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useState, memo } from 'react'
+import { useEffect, useState } from 'react'
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa'
-import dynamic from 'next/dynamic'
-
-// Dynamically import 3D scene to avoid SSR issues
-const Scene3D = dynamic(() => import('./Scene3D'), { 
-  ssr: false,
-  loading: () => null
-})
-
-// Memoized particle component to prevent re-renders
-const FloatingParticles = memo(() => {
-  return (
-    <>
-      {[...Array(30)].map((_, i) => {
-        const initialLeft = Math.random() * 100;
-        const initialTop = Math.random() * 100;
-        const animationDuration = 8 + (i % 4);
-        const animationDelay = (i * 0.3) % 6;
-        
-        return (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-50"
-            style={{
-              left: `${initialLeft}%`,
-              top: `${initialTop}%`,
-            }}
-            animate={{
-              y: [-12, 12, -12],
-              x: [-6, 6, -6],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: animationDuration,
-              repeat: Infinity,
-              delay: animationDelay,
-              ease: "easeInOut",
-              repeatType: "loop",
-            }}
-          />
-        );
-      })}
-    </>
-  );
-});
-
-FloatingParticles.displayName = 'FloatingParticles';
+import GlobalBackground from './GlobalBackground'
 
 export default function Hero() {
   const [text, setText] = useState('')
@@ -76,16 +31,8 @@ export default function Hero() {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        
-        {/* 3D Scene */}
-        <Scene3D />
-        
-        {/* Floating Particles */}
-        <FloatingParticles />
-
-      </div>
+      {/* Global Background */}
+      <GlobalBackground />
 
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
         {/* Main Content */}
@@ -174,24 +121,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Cyber Glow Rings */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-cyan-400/10 rounded-full"
-          animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-purple-500/10 rounded-full"
-          animate={{ rotate: -360, scale: [1, 0.9, 1] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
-      </motion.div>
     </section>
   )
 }
