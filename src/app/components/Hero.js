@@ -100,7 +100,7 @@ export default function Hero() {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold text-gradient mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-orbitron font-bold text-gradient mb-6"
           >
             SUZAIR KHAN
           </motion.h1>
@@ -112,7 +112,7 @@ export default function Hero() {
             transition={{ delay: 0.5 }}
             className="h-16 flex items-center justify-center"
           >
-            <h2 className="text-lg md:text-xl lg:text-2xl font-inter text-gray-300 font-medium">
+            <h2 className="text-base md:text-lg lg:text-xl font-inter text-gray-300 font-medium">
               {text}
               <span className="animate-pulse text-cyan-400">|</span>
             </h2>
@@ -123,7 +123,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="text-sm md:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
             Experienced in designing and deploying scalable cloud-based IoT solutions, 
             MERN stack development, and leading cross-functional teams to deliver 
@@ -148,9 +148,9 @@ export default function Hero() {
                 transition={{ delay: 1.2 + index * 0.1 }}
                 whileHover={{ scale: 1.2, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="glass p-4 rounded-full hover:cyber-glow transition-all duration-300 group"
+                className="glass p-3 rounded-full hover:cyber-glow transition-all duration-300 group"
               >
-                <social.icon className="w-6 h-6 text-gray-400 group-hover:text-cyan-400 transition-colors duration-300" />
+                <social.icon className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors duration-300" />
               </motion.a>
             ))}
           </motion.div>
@@ -160,13 +160,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4 }}
-            className="mt-12"
+            className="mt-10"
           >
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block glass px-10 py-5 rounded-full text-xl font-medium text-white hover:cyber-glow transition-all duration-300 border border-cyan-400/30 hover:border-cyan-400/60"
+              className="inline-block glass px-8 py-4 rounded-full text-lg font-medium text-white hover:cyber-glow transition-all duration-300 border border-cyan-400/30 hover:border-cyan-400/60"
             >
               <span className="text-gradient font-semibold">Let&apos;s Work Together</span>
             </motion.a>

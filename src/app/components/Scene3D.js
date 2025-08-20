@@ -256,7 +256,7 @@ function Scene({ scrollOffset = 0 }) {
   })
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} scale={0.75} position={[0, -0.5, 0]}>
       {/* Enhanced Lighting for Better Visibility */}
       <ambientLight intensity={0.6} />
       <pointLight position={[10, 10, 10]} intensity={0.8} color="#00ffff" />
@@ -264,12 +264,11 @@ function Scene({ scrollOffset = 0 }) {
       <pointLight position={[0, 5, 5]} intensity={0.4} color="#8b5cf6" />
       
       {/* Realistic Developer 3D Objects - Closer and More Visible */}
-      <DeveloperMonitor position={[-4, 1, 1]} color="#00ffff" speed={0.8} />
+      <DeveloperMonitor position={[-7, 0, -3]} color="#00ffff" speed={0.8} />
    
-      <RealisticLaptop position={[-1.5, -2, 2]} color="#4ecdc4" speed={0.9} />
-      
-      {/* Additional developer objects - More spread out */}
-      <DeveloperMonitor position={[6, 2, -2]} color="#45b7d1" speed={1.5} />
+      <group position={[7, 0, -3]} rotation={[0.5, -0.8, 0]}>
+        <RealisticLaptop position={[0, 0, 0]} color="#4ecdc4" speed={0.9} />
+      </group>
       
       {/* Particle System */}
       <ParticleSystem />
@@ -291,7 +290,7 @@ export default function Scene3D() {
   }, [])
 
   return (
-    <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute inset-0 pointer-events-none z-0">
       <Canvas
         camera={{ 
           position: [0, 0, 8], 
