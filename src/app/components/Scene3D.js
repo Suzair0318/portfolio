@@ -106,6 +106,127 @@ function DeveloperMonitor({ position, color, speed = 1 }) {
   )
 }
 
+// Coffee Mug 3D Model
+function CoffeeMug({ position, color, speed = 1 }) {
+  const meshRef = useRef()
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.001 * speed
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.4) * 0.1
+    }
+  })
+
+  return (
+    <group ref={meshRef} position={position}>
+      {/* Mug Body */}
+      <mesh position={[0, 0, 0]}>
+        <cylinderGeometry args={[0.4, 0.3, 0.8, 16]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.1}
+          roughness={0.8}
+        />
+      </mesh>
+      
+      {/* Coffee */}
+      <mesh position={[0, 0.35, 0]}>
+        <cylinderGeometry args={[0.35, 0.35, 0.1, 16]} />
+        <meshStandardMaterial 
+          color="#3d2914" 
+          transparent 
+          opacity={0.9}
+        />
+      </mesh>
+      
+      {/* Handle */}
+      <mesh position={[0.5, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <torusGeometry args={[0.25, 0.05, 8, 16]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={0.1}
+          roughness={0.8}
+        />
+      </mesh>
+      
+      {/* Steam Effect */}
+      <mesh position={[0, 0.6, 0]}>
+        <planeGeometry args={[0.1, 0.3]} />
+        <meshStandardMaterial 
+          color={color} 
+          transparent 
+          opacity={0.3}
+          emissive={color}
+          emissiveIntensity={0.1}
+        />
+      </mesh>
+    </group>
+  )
+}
+
+// Smartphone 3D Model
+function Smartphone({ position, color, speed = 1 }) {
+  const meshRef = useRef()
+  const screenRef = useRef()
+  
+  useFrame((state) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.002 * speed
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed * 0.5) * 0.08
+    }
+    if (screenRef.current) {
+      screenRef.current.material.emissiveIntensity = 0.2 + Math.sin(state.clock.elapsedTime * 3) * 0.1
+    }
+  })
+
+  return (
+    <group ref={meshRef} position={position}>
+      {/* Phone Body */}
+      <mesh position={[0, 0, 0]}>
+        <boxGeometry args={[0.8, 1.6, 0.1]} />
+        <meshStandardMaterial 
+          color="#1a1a1a" 
+          metalness={0.9}
+          roughness={0.1}
+        />
+      </mesh>
+      
+      {/* Screen */}
+      <mesh ref={screenRef} position={[0, 0, 0.06]}>
+        <planeGeometry args={[0.7, 1.4]} />
+        <meshStandardMaterial 
+          color={color} 
+          transparent 
+          opacity={0.4}
+          emissive={color}
+          emissiveIntensity={0.2}
+        />
+      </mesh>
+      
+      {/* App Icons */}
+      {Array.from({ length: 12 }, (_, i) => {
+        const row = Math.floor(i / 3)
+        const col = i % 3
+        return (
+          <mesh 
+            key={i}
+            position={[-0.2 + col * 0.2, 0.4 - row * 0.2, 0.07]}
+          >
+            <boxGeometry args={[0.12, 0.12, 0.01]} />
+            <meshStandardMaterial 
+              color={i % 3 === 0 ? '#ff6b6b' : i % 3 === 1 ? '#4ecdc4' : '#45b7d1'} 
+              transparent 
+              opacity={0.8}
+              emissive={i % 3 === 0 ? '#ff6b6b' : i % 3 === 1 ? '#4ecdc4' : '#45b7d1'}
+              emissiveIntensity={0.3}
+            />
+          </mesh>
+        )
+      })}
+    </group>
+  )
+}
+
 // Realistic Developer Laptop
 function RealisticLaptop({ position, color, speed = 1 }) {
   const meshRef = useRef()
@@ -269,6 +390,14 @@ function Scene({ scrollOffset = 0 }) {
       <group position={[7, 0, -3]} rotation={[0.5, -0.8, 0]}>
         <RealisticLaptop position={[0, 0, 0]} color="#4ecdc4" speed={0.9} />
       </group>
+      
+      {/* Additional Developer Objects - Full Screen Distribution */}
+      <CoffeeMug position={[-18, -8, -8]} color="#ff6b6b" speed={0.7} />
+      <Smartphone position={[16, -7, -9]} color="#45b7d1" speed={1.2} />
+      <CoffeeMug position={[20, 7, -12]} color="#4ecdc4" speed={0.6} />
+      <Smartphone position={[-22, -3, -11]} color="#ff6b6b" speed={1.1} />
+      <CoffeeMug position={[-16, 8, -14]} color="#8b5cf6" speed={0.5} />
+      <Smartphone position={[14, 9, -15]} color="#4ecdc4" speed={1.3} />
       
       {/* Particle System */}
       <ParticleSystem />
